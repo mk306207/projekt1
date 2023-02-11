@@ -12,6 +12,7 @@ struct Food {
     float cena;
     std::string opis;
 };
+void kategorie(std::string(kategoria));
 //struktura
 int main() {
     std::ifstream inFile;
@@ -23,13 +24,16 @@ int main() {
     std::string nazwa, kategoria;
     float cena;
     std::string opis;
+    std::string ids, cenas;
         while(std::getline(inFile, line))
         {
             std::stringstream ss(line);//wybieranie liczb ze stringa
-            ss >> id; // zmienna ss do id
+            getline(ss, ids, ';'); //ss>>id; // zmienna ss do id
+            id = stoi(ids);//zmiana stringa do int
             getline(ss, nazwa, ';');//czytam linie dopoki nie natrafie na ;
             getline(ss, kategoria, ';');
-            ss >> cena;  // zmienna ss do ceny
+            getline(ss,cenas,';');  // zmienna ss do ceny
+            cena = stof(cenas);//zmiana z string na float
             getline(ss, opis);
             Food f = {id, nazwa, kategoria, cena, opis};
             menu[kategoria].push_back(f);
